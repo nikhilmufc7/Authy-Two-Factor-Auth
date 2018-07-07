@@ -257,6 +257,9 @@ h1 {
 .btn:focus {
   outline: none;
 }
+.footer{
+    color:black;
+}
 
 .form-group {
   position: relative;
