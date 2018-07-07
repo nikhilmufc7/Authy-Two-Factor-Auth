@@ -24,7 +24,13 @@ if(!config.API_KEY){
  * Setup MongoDB connection.
  */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/accountsecuritydemo');
+
+mongoose.connect('mongodb://user:123456a@ds129831.mlab.com:29831/dive'),{
+	useMongoClient: true
+};
+
+
+
 var db = mongoose.connection;
 
 app.use(cookieParser());
@@ -47,21 +53,21 @@ app.use(bodyParser.urlencoded({
 /**
  * Open the DB connection.
  */
-db.once('open', function (err) {
-    if(err){
-        console.log("Error Opening the DB Connection: ", err);
-        return;
-    }
-    app.use(expressSession({
-        secret: config.SECRET,
+ db.once('open', function (err) {
+     if(err){
+         console.log("Error Opening the DB Connection: ", err);
+         return;
+     }
+     app.use(expressSession({
+         secret: config.SECRET,
         cookie: {maxAge: 60 * 60 * 1000},
         store: new mongoStore({
-            db: mongoose.connection.db,
+             db: mongoose.connection.db,
             collection: 'sessions'
-        }),
-        resave: true,
-        saveUninitialized: true
-    }));
+         }),
+         resave: true,
+         saveUninitialized: true
+   }));
     var port = config.PORT || 5151;
     server.listen(port);
     console.log("Magic happening on port " + port);
