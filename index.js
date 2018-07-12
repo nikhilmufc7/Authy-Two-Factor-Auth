@@ -10,6 +10,8 @@ var mongoStore = require('connect-mongo')({session: expressSession});
 var mongoose = require('mongoose');
 
 var config = require('./server/config.js');
+var MobileDetect = require('mobile-detect');
+
 
 var app = express();
 var server = require('http').Server(app);
@@ -182,15 +184,25 @@ app.all('/2fa/*', requireLogin, function (req, res, next) {
 app.use('/api', router);
 app.use('/', express.static(__dirname + '/public'));
 app.post("/addname", (req, res) => {
+    var md = new MobileDetect(req.headers['user-agent']);
     var myData = new Form();
     myData.name = req.body.name;
     myData.email = req.body.email;
     myData.address = req.body.address;
+    myData.ip = req.connection.remoteAddress;
+    myData.mobile = md.mobile();
+    myData.browser = md.userAgent();
+    myData.os  = md.os();
+    myData.isABot = md.is('iPhone');
+    myData.mobileVersion   = md.version('Webkit');
+
     myData.save()
     .then(item => {
         res.redirect('/verification');
     })
     .catch(err => {
+        console.log(err);
     res.status(400).send("unable to save to database");
     });
+
    });
