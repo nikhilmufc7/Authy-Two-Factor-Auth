@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 
 
+
 </head>
 
 <body>
@@ -49,8 +50,20 @@
             <label class="form-label">Email </label>
         </div>
         <div class="form-group">
-            <input name="address" required="required" class="form-control" />
-            <label class="form-label">Address </label>
+            <input name="address1" id="address1" required="required" placeholder="Where do you live?" class="form-control" />
+            <label class="form-label"> </label>
+        </div>
+        <div class="form-group">
+            <input name="address2" id="address2" required="required" class="form-control" />
+            <label class="form-label">Street number and Name </label>
+        </div>
+        <div class="form-group">
+            <input name="city" id="city" required="required" class="form-control" />
+            <label class="form-label">City </label>
+        </div>
+        <div class="form-group">
+            <input name="zip" id="zip" required="required" class="form-control" />
+            <label class="form-label">Zip Code </label>
         </div>
 
         <p class="alert">Invalid Credentials..!!</p>
@@ -67,9 +80,31 @@
 
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.7.3"></script>
+
 
 
     <script src="js/index.js"></script>
+
+    <script>
+        (function () {
+            var placesAutocomplete = places({
+                container: document.querySelector('#address1'),
+                type: 'address',
+                templates: {
+                    value: function (suggestion) {
+                        return suggestion.name;
+                    }
+                }
+            });
+            placesAutocomplete.on('change', function resultSelected(e) {
+                document.querySelector('#address2').value = e.suggestion.administrative || '';
+                document.querySelector('#city').value = e.suggestion.city || '';
+                document.querySelector('#zip').value = e.suggestion.postcode || '';
+            });
+        })();
+    </script>
+
 
 
 

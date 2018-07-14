@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
 
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -22,17 +24,45 @@
         .container {
             padding-top: 15%;
         }
+
+        @import url(https://fonts.googleapis.com/css?family=Dancing+Script|Roboto);
+        body {
+            background: #1c92d2;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f2fcfe, #1c92d2);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .verifyphone {
+            font-family: 'Dancing Script', cursive !important;
+            ;
+            font-size: 2em !important;
+        }
     </style>
 </head>
 
 <body ng-app="accountSecurityQuickstart">
 
+
     <div class="container" ng-controller="PhoneVerificationController">
+        <div class="row text-center">
+
+
+            <h4 class="verifyphone">
+                Let us call you or send you an SMS with the 4 digit Verification code.
+            </h4>
+        </div>
+
         <div class="row centered-form">
             <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Verify your phone number</h3>
+
                     </div>
                     <div class="panel-body" ng-show="view.start">
                         <form role="form">
@@ -83,6 +113,11 @@
                 </div>
             </div>
         </div>
+        <div class="verifyphone">
+            Powered by Dive
+
+        </div>
+
     </div>
 
 </body>

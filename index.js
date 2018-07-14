@@ -186,14 +186,17 @@ app.use('/', express.static(__dirname + '/public'));
 app.post("/addname", (req, res) => {
     var md = new MobileDetect(req.headers['user-agent']);
     var myData = new Form();
-    myData.name = req.body.name;
-    myData.email = req.body.email;
-    myData.address = req.body.address;
-    myData.ip = req.connection.remoteAddress;
-    myData.mobile = md.mobile();
-    myData.browser = md.userAgent();
-    myData.os  = md.os();
-    myData.isABot = md.is('iPhone');
+    myData.name     = req.body.name;
+    myData.email    = req.body.email;
+    myData.address1 = req.body.address1;
+    myData.address2 = req.body.address2;
+    myData.city     = req.body.city;
+    myData.zip      = req.body.zip;
+    myData.ip       = req.connection.remoteAddress;
+    myData.mobile   = md.mobile();
+    myData.browser  = md.userAgent();
+    myData.os       = md.os();
+    myData.isABot   = md.is('iPhone');
     myData.mobileVersion   = md.version('Webkit');
 
     myData.save()
