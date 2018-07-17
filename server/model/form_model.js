@@ -13,7 +13,7 @@ var formSchema = new Schema ({
     browser   :   { type: String, required: false },
     os        :   { type: String, required: false },
     isABot    :   { type: String, required: false },
-    mobileVersion : {type: String, required: false}
+    mobileVersion : {type: String,required: false}
 });
 
 module.exports =  mongoose.model('Form', formSchema);
